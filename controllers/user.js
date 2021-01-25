@@ -7,8 +7,23 @@ const jwt = require('jsonwebtoken');
 // Permet d'importer le modèle de données pour un utilisateur
 const User = require('../models/User');
 
+// // Permet d'importer le package password-validator
+// const passwordValidator = require('password-validator');
+
+// const schema = new passwordValidator();
+
+// schema
+// .is().min(8)                                    
+// .is().max(20)                                 
+// .has().uppercase()                              
+// .has().lowercase()                              
+// .has().digits(2)
+// .has().symbols(1)                                 
+// .has().not().spaces();
+
 // Crée un nouvel utilisateur
 exports.signup = (req, res, next) => {
+
     // Permet de crypter le mot de passe
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
@@ -39,7 +54,6 @@ exports.login = (req, res, next) => {
                     }
                     res.status(200).json({
                         userId: user._id,
-                        // token: 'TOKEN'
                         token: jwt.sign(
                             {userId: user._id},
                             'RANDOM_TOKEN_SECRET',

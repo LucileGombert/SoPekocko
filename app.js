@@ -17,24 +17,19 @@ const saucesRoutes = require('./routes/sauces');
 // Permet d'importer le router utilisateur
 const userRoutes = require('./routes/user'); 
 
+// require('dotenv').config();
 
-
-// Permet de créer l'application express
-const app = express();
-
-// // Permet de se connecter à MongoDB
-// mongoose.connect('mongodb+srv://wiwi:sopekocko@cluster0.m3wsm.mongodb.net/<dbname>?retryWrites=true&w=majority',
-// { useNewUrlParser: true,
-//   useUnifiedTopology: true })
-//   .then(() => console.log('Connexion à MongoDB réussie !'))
-//   .catch(() => console.log('Connexion à MongoDB échouée !'));
-
+// Permet de se connecter à MongoDB
 mongoose.connect('mongodb+srv://user:mdp@cluster0.md8rb.mongodb.net/database?retryWrites=true&w=majority',
+// mongoose.connect('mongodb+srv://process.env.DBUSER:process.env.DBPASSWORD@cluster0.md8rb.mongodb.net/process.env.DBNAME?retryWrites=true&w=majority',
 { useNewUrlParser: true,
 useUnifiedTopology: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))
 .catch(() => console.log('Connexion à MongoDB échouée !'));
-  
+
+// Permet de créer l'application express
+const app = express();
+
 // Middleware CORS
 app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Origin', '*');
