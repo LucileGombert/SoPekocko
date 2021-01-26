@@ -17,11 +17,11 @@ const saucesRoutes = require('./routes/sauces');
 // Permet d'importer le router utilisateur
 const userRoutes = require('./routes/user'); 
 
-// require('dotenv').config();
+require('dotenv').config();
 
 // Permet de se connecter à MongoDB
-mongoose.connect('mongodb+srv://user:mdp@cluster0.md8rb.mongodb.net/database?retryWrites=true&w=majority',
-// mongoose.connect('mongodb+srv://process.env.DBUSER:process.env.DBPASSWORD@cluster0.md8rb.mongodb.net/process.env.DBNAME?retryWrites=true&w=majority',
+// mongoose.connect('mongodb+srv://user:mdp@cluster0.md8rb.mongodb.net/database?retryWrites=true&w=majority',
+mongoose.connect('mongodb+srv://' + process.env.DB_USER + ':' + process.env.DB_PASSWORD + '@cluster0.md8rb.mongodb.net/' + process.env.DB_NAME + '?retryWrites=true&w=majority',
 { useNewUrlParser: true,
 useUnifiedTopology: true })
 .then(() => console.log('Connexion à MongoDB réussie !'))

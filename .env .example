@@ -1,0 +1,7 @@
+# DB
+
+DB_HOST=localhost
+DB_PORT=4200
+DB_USER=dataBaseUser
+DB_PASSWORD=dataBasePassword
+DB_NAME=dataBaseName

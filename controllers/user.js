@@ -1,56 +1,36 @@
-// Permet d'importer le package bcrypt
 const bcrypt = require('bcrypt');
-
-// Permet de créer des tokens et de les vérifier
 const jwt = require('jsonwebtoken');
 
-// Permet d'importer le modèle de données pour un utilisateur
+
 const User = require('../models/User');
 
-// // Permet d'importer le package password-validator
-// const passwordValidator = require('password-validator');
 
-// const schema = new passwordValidator();
 
-// schema
-// .is().min(8)                                    
-// .is().max(20)                                 
-// .has().uppercase()                              
-// .has().lowercase()                              
-// .has().digits(2)
-// .has().symbols(1)                                 
-// .has().not().spaces();
-
-// Crée un nouvel utilisateur
 exports.signup = (req, res, next) => {
-
-    // Permet de crypter le mot de passe
     bcrypt.hash(req.body.password, 10)
         .then(hash => {
             const user = new User({
                 email: req.body.email,
                 password: hash
             });
-            // Permet de sauvegarder le mot de passe crypté dans la base de données
+            
             user.save()
                 .then(() => res.status(201).json({message: 'Utilisateur créé'}))
-                .catch(error => res.status(400).json({error}));
+                .catch(error => res.status(400).json({ error }));
         })
-        .catch(error => res.status(500).json({error}));
+        .catch(error => res.status(500).json({ error }));
 };
 
-
-// Connecte un utilisateur
 exports.login = (req, res, next) => {
-    User.findOne({email: req.body.email})
+    User.findOne({ email: req.body.email })
         .then(user => {
             if(!user) {
-                return res.status(401).json({error: 'Utilisateur non trouvé'});
+                return res.status(401).json({ error: 'Utilisateur non trouvé' });
             }
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if(!valid) {
-                        return res.status(401).json({error: 'Mot de passe incorrect'});
+                        return res.status(401).json({ error: 'Mot de passe incorrect' });
                     }
                     res.status(200).json({
                         userId: user._id,
@@ -61,7 +41,7 @@ exports.login = (req, res, next) => {
                         )
                     });
                 })
-                .catch(error => res.status(500).json({error}));
+                .catch(error => res.status(500).json({ error }));
         })
-        .catch(error => res.status(500).json({error}));
+        .catch(error => res.status(500).json({ error }));
 };
