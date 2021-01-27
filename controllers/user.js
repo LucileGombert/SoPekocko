@@ -4,8 +4,8 @@ const bcrypt = require('bcrypt');
 // Permet de créer des tokens et de les vérifier
 const jwt = require('jsonwebtoken');
 
-// Permet de masquer l'adresse mail
-const maskData = require('maskdata');
+// Permet d'importer le package crypto-js
+const cryptoJs = require('crypto-js');
 
 // Permet d'importer le package password-validator
 const passwordValidator = require('password-validator');
@@ -28,23 +28,14 @@ schemaPassword
 .has().not().spaces();
 
 
-// // Options de masquage de l'adresse mail
-// const emailMask2Options = {
-//     maskWith: "*", 
-//     unmaskedStartCharactersBeforeAt: 0,
-//     unmaskedEndCharactersAfterAt: 2,
-//     maskAtTheRate: false
-// };
-
-
 // Crée un nouvel utilisateur
 exports.signup = (req, res, next) => {
     if(schemaPassword.validate(req.body.password)) {
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
                 const user = new User({
-                    email: req.body.email,
-                    // email: maskData.maskEmail2(req.body.email, emailMask2Options),
+                    // email: req.body.email,
+                    email: cryptoJs.HmacSHA512(req.body.email, 'RANDOM_KEY_SECRET').toString(),
                     password: hash
                 });
                 user.save()
@@ -60,8 +51,8 @@ exports.signup = (req, res, next) => {
 
 // Connecte un utilisateur
 exports.login = (req, res, next) => {
-    User.findOne({ email: req.body.email })
-    // User.findOne({ email: maskData.maskEmail2(req.body.email, emailMask2Options) })
+    // User.findOne({ email: req.body.email })
+    User.findOne({ email: cryptoJs.HmacSHA512(req.body.email, 'RANDOM_KEY_SECRET').toString() })
         .then(user => {
             if(!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé' });
