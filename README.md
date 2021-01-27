@@ -1,13 +1,11 @@
 PIQUANTE
 
-~ Description ~	
-Piquante est une application d'évaluation de sauces piquantes.
+~ Description ~																																																																																	Piquante est une application d'évaluation de sauces piquantes.
 
-~ Prérequis ~
-Pour faire fonctionner le projet, node-sass doit être installé à part.
+~ Prérequis ~																																																																																		Pour faire fonctionner le projet, node-sass doit être installé à part.
 
 ~ Installation ~
-Frontend : dans le dossier frontend, exécuter npm install puis ng serve.
+Frontend : cloner le repository https://github.com/OpenClassrooms-Student-Center/dwj-projet6. 																																								Dans le dossier frontend, exécuter npm install puis ng serve.
 Enfin se rendre sur http://localhost:4200/.
 
 Backend : dans le dossier backend, exécuter npm install puis nodemon server.
