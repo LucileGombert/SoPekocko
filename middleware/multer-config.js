@@ -1,13 +1,16 @@
 // Permet d'importer multer
 const multer = require('multer');
 
+// Permet de définir l'extension des fichiers images
 const MIME_TYPES = {
     'image/jpg': 'jpg',
     'image/jpeg': 'jpg',
     'image/png': 'png'
 };
 
+// Permet de configurer multer
 const storage = multer.diskStorage({
+    // Permet de stocker les images dans le dossier images
     destination: (req, file, callback) => {
         callback(null, 'images')
     },

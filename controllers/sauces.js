@@ -1,9 +1,10 @@
 // Permet d'importer le modèle de données pour une sauce
 const Sauce = require('../models/Sauce');
 
+// Permet d'importer le package file system
 const fs = require('fs');
 
-// Crée une nouvelle sauce
+// Permet de créer une nouvelle sauce
 exports.createSauce = (req, res, next) => {
     const sauceObject = JSON.parse(req.body.sauce);
     delete sauceObject._id;
@@ -16,7 +17,7 @@ exports.createSauce = (req, res, next) => {
         .catch(error => res.status(400).json({error}));
 };
 
-// Modifie une sauce
+// Permet de modifier une sauce
 exports.modifySauce = (req, res, next) => {
     const sauceObject = req.file ?
     {
@@ -28,7 +29,7 @@ exports.modifySauce = (req, res, next) => {
         .catch(error => res.status(400).json({ error}));
 };
 
-// Supprime une sauce
+// Permet de supprimer une sauce
 exports.deleteSauce = (req, res, next) => {
     Sauce.findOneAndDelete({_id: req.params.id})
         .then(sauce => {
@@ -42,14 +43,14 @@ exports.deleteSauce = (req, res, next) => {
         .catch(error => res.status(500).json({ error}));
 };
 
-// Affiche toutes les sauces
+// Permet d'afficher toutes les sauces
 exports.getAllSauces = (req, res, next) => {
     Sauce.find()
     .then(sauces => res.status(200).json(sauces))
     .catch(error => res.status(400).json({ error}));
 };
 
-// Affiche une sauce
+// Permet d'afficher une sauce
 exports.getOneSauce = (req, res, next) => {
     Sauce.findOne({_id: req.params.id})
         .then(sauce => res.status(200).json(sauce))

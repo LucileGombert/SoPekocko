@@ -28,13 +28,13 @@ schemaPassword
 .has().not().spaces();
 
 
-// Crée un nouvel utilisateur
+// Permet de créer un nouvel utilisateur
 exports.signup = (req, res, next) => {
+    // Si le mot de passe comporte les caractères nécessaires, il sera hashé et l'adresse mail cryptée pour être enregistrés dans la base de données
     if(schemaPassword.validate(req.body.password)) {
         bcrypt.hash(req.body.password, 10)
             .then(hash => {
                 const user = new User({
-                    // email: req.body.email,
                     email: cryptoJs.HmacSHA512(req.body.email, 'RANDOM_KEY_SECRET').toString(),
                     password: hash
                 });
@@ -49,14 +49,15 @@ exports.signup = (req, res, next) => {
 };
 
 
-// Connecte un utilisateur
+// Permet à un utilisateur de se connecter
 exports.login = (req, res, next) => {
-    // User.findOne({ email: req.body.email })
+    // Recherche le user dans la base de donnée qui correspond à l'adresse mail de la requête
     User.findOne({ email: cryptoJs.HmacSHA512(req.body.email, 'RANDOM_KEY_SECRET').toString() })
         .then(user => {
             if(!user) {
                 return res.status(401).json({ error: 'Utilisateur non trouvé' });
             }
+            // Si le user est trouvé, le mot de passe entré par l'utilisateur est comparé avec celui enregistré dans la base de données
             bcrypt.compare(req.body.password, user.password)
                 .then(valid => {
                     if(!valid) {
