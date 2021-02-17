@@ -11,7 +11,7 @@ So Pekocko
 <br>▹ MongoDB
 
 ⇢ Prérequis :
-<br>Vous devrez avoir Node et `npm` installés localement sur votre machine.
+<br>Vous devrez avoir Node-sass installé à part.
 
 ⇢ Installation :
 <br>▹ Clonez le [frontend](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) du projet ;
