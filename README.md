@@ -1,12 +1,23 @@
-PIQUANTE
+So Pekocko
+==============================================
 
-~ Description ~																																																																																	Piquante est une application d'évaluation de sauces piquantes.
+⇢ Présentation :
+<br>Développer une API sécurisée pour une application d'avis gastronomiquesévaluation de sauces piquantes.
 
-~ Prérequis ~																																																																																		Pour faire fonctionner le projet, node-sass doit être installé à part.
+⇢ Technologies utilisées :
+<br>▹ JavaScript
+<br>▹ Node.js
+<br>▹ Express.js
+<br>▹ MongoDB
 
-~ Installation ~
-Frontend : cloner le repository https://github.com/OpenClassrooms-Student-Center/dwj-projet6. 																																								Dans le dossier frontend, exécuter npm install puis ng serve.
-Enfin se rendre sur http://localhost:4200/.
+⇢ Prérequis :
+<br>Vous devrez avoir Node et `npm` installés localement sur votre machine.
 
-Backend : dans le dossier backend, exécuter npm install puis nodemon server.
-Enfin copier le fichier .env.example en remplaçant les valeurs par défaut pour accéder à la base de données. 
+⇢ Installation :
+<br>▹ Clonez le [frontend](https://github.com/OpenClassrooms-Student-Center/dwj-projet6) du projet ;
+<br>▹ A partir du dossier frontend, exécutez `npm install` puis `ng serve`;
+<br>
+<br>▹ Clonez ce repository ;
+<br>▹ A partir du dossier backend, exécutez `npm install` puis `nodemon server`;
+<br>▹ Le serveur doit fonctionner sur `localhost` avec le port par défaut `4200`;
+<br>▹ Copiez le fichier .env.example en remplaçant les valeurs par défaut pour accéder à la base de données.
