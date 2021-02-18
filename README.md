@@ -18,6 +18,7 @@ So Pekocko
 <br>▹ A partir du dossier frontend, exécutez `npm install` puis `ng serve`;
 <br>
 <br>▹ Clonez ce repository ;
+<br>▹ Copiez le fichier .env.example en remplaçant les valeurs par défaut pour accéder à la base de données ;
 <br>▹ A partir du dossier backend, exécutez `npm install` puis `nodemon server`;
-<br>▹ Le serveur doit fonctionner sur `localhost` avec le port par défaut `4200`;
-<br>▹ Copiez le fichier .env.example en remplaçant les valeurs par défaut pour accéder à la base de données.
+<br>▹ Le serveur doit fonctionner sur `localhost` avec le port par défaut `4200`.
+
